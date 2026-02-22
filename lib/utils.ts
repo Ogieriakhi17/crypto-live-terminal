@@ -28,3 +28,11 @@ export function formatCurrency(
     maximumFractionDigits: digits ?? 2,
   });
 }
+
+export function formatPercentage(change: number | null | undefined): string {
+  if (change === null || change === undefined || isNaN(change)) {
+    return '0.0%';
+  }
+  const formattedChange = change.toFixed(1);
+  return `${formattedChange}%`;
+}
