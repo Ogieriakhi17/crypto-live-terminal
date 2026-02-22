@@ -3,7 +3,8 @@ import Image from 'next/image'
 import DataTable from '@/components/DataTable'
 import Link from 'next/link'
 import { TrendingDown, TrendingUp } from 'lucide-react'
-import { cn } from '@/lib/utils'
+import { cn, formatCurrency } from '@/lib/utils'
+import { fetcher } from '@/lib/coingecko.actions'
 
 
 type TrendingCoin = {
@@ -122,7 +123,11 @@ const columns = [
   },
 ]
 
-const Page = () => {
+const Page = async () => {
+    const coin = await fetcher<CoinDetailsData>('coins/bitcoin', {
+    dex_par_format: 'symbol'
+  });
+
   return (
     <main className="main-container">
 
@@ -133,15 +138,15 @@ const Page = () => {
           <div className="header pt-2 flex items-center gap-3">
 
             <Image
-              src="https://assets.coingecko.com/coins/images/1/large/bitcoin.png"
-              alt="Bitcoin"
+              src={coin.image.large}
+              alt={coin.name}
               width={56}
               height={56}
             />
 
             <div className="info">
-              <p>Bitcoin / BTC</p>
-              <h1>$98,245</h1>
+              <p>{coin.name} / {coin.symbol.toUpperCase()}</p>
+              <h1>{formatCurrency(coin.market_data.current_price.usd)}</h1>
             </div>
 
           </div>
