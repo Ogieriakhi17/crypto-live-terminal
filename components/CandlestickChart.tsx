@@ -44,9 +44,36 @@ const CandlestickChart = ({children,
     const series = chart.addSeries(CandlestickSeries, getCandlestickConfig());
 
     series.setData(convertOHLCData(ohlcData));
+    chart.timeScale().fitContent();
+
+    chartRef.current = chart;
+    candleSeriesRef.current = series;
+
+    const observer = new ResizeObserver((entries) => {
+        if (!entries.length) return;
+        chart.applyOptions({width: entries[0].contentRect.width});
+    })
+    observer.observe(container);
+
+    return () => {
+        observer.disconnect();
+        chart.remove();
+        chartRef.current= null;
+        candleSeriesRef.current = null;
+    }
     }, [height]);
 
+    useEffect(() => {
+        if(!candleSeriesRef) return;
 
+        const convertedToSeconds = ohlcData.map(
+            (item) => [Math.floor(item[0] / 1000), item[1], item[2], item[3], item[4]] as OHLCData,
+        );
+
+        const converted = convertOHLCData(convertedToSeconds);
+        candleSeriesRef.current?.setData(converted);
+        chartRef.current?.timeScale().fitContent();
+    })
 
 
     const fetchOHLCData = async (selectedPeriod: Period) => {
