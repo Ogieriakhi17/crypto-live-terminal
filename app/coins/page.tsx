@@ -6,8 +6,8 @@ import { TrendingDown, TrendingUp } from "lucide-react";
 import DataTable from "@/components/DataTable";
 import CoinsPagination from "@/components/CoinsPagination";
 
-const Page = async ({searchParams}: NextPageProps) => {
-  const {page} = searchParams; 
+const Page = async ({ searchParams }: NextPageProps) => {
+  const { page } = await searchParams;
   const currentPage = Number(page) || 1;
   const perPage = 20;
   const columns: DataTableColumn<CoinMarketData>[] = [
@@ -34,54 +34,51 @@ const Page = async ({searchParams}: NextPageProps) => {
       ),
     },
     {
-        header: "Price",
-        cellClassName: "price-cell",
-        cell: (coin: CoinMarketData) => (
-            formatCurrency(coin.current_price)
-        ),
+      header: "Price",
+      cellClassName: "price-cell",
+      cell: (coin: CoinMarketData) => formatCurrency(coin.current_price),
     },
     {
-      header: '24h Change',
-      cellClassName: 'change-cell',
+      header: "24h Change",
+      cellClassName: "change-cell",
       cell: (coin: CoinMarketData) => {
         const isTrendingUp = coin.price_change_percentage_24h > 0;
 
         return (
           <span
-            className={cn('change-value', {
-              'text-green-600': isTrendingUp,
-              'text-red-500': !isTrendingUp,
+            className={cn("change-value", {
+              "text-green-600": isTrendingUp,
+              "text-red-500": !isTrendingUp,
             })}
           >
-            {isTrendingUp && '+'}
+            {isTrendingUp && "+"}
             {formatPercentage(coin.price_change_percentage_24h)}
             {isTrendingUp ? (
-                <TrendingUp width={16} height={16} />
-              ) : (
-                <TrendingDown width={16} height={16} />
-              )}
+              <TrendingUp width={16} height={16} />
+            ) : (
+              <TrendingDown width={16} height={16} />
+            )}
           </span>
         );
       },
     },
     {
-      header: 'Market Cap',
-      cellClassName: 'market-cap-cell',
+      header: "Market Cap",
+      cellClassName: "market-cap-cell",
       cell: (coin: CoinMarketData) => formatCurrency(coin.market_cap),
     },
   ];
 
   let coinsData: CoinMarketData[] = [];
-  const estimatedTotalPages = currentPage >= 100 ? Math.ceil(currentPage / 100) * 100 + 100 : 100;
-  try 
-  {
+  const estimatedTotalPages =
+    currentPage >= 100 ? Math.ceil(currentPage / 100) * 100 + 100 : 100;
+  try {
     coinsData = await fetcher<CoinMarketData[]>("/coins/markets", {
       vs_currency: "usd",
       page: currentPage,
       per_page: perPage,
     });
-  } catch (error) 
-  {
+  } catch (error) {
     console.log("Error fetching coins data:", error);
   }
 
