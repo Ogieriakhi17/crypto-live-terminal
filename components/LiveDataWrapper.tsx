@@ -6,6 +6,7 @@ import { useCoinGeckoWebSocket } from "@/hooks/useCoinGeckoWebSocket";
 import DataTable from "@/components/DataTable";
 import { formatCurrency, timeAgo } from "@/lib/utils";
 import { useState } from "react";
+import CoinHeader from "@/components/CoinHeader";
 
 const LiveDataWrapper = ({
   children,
