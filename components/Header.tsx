@@ -14,9 +14,9 @@ const Header = () => {
                 <Link href="/">
                     <Image
                         src="/logo.svg"
-                        alt="CoinPulse logo"
-                        width={132}
-                        height={40}
+                        alt="CryptoWatch logo"
+                        width={162}
+                        height={60}
                     />
                 </Link>
 
