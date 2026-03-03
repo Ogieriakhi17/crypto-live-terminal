@@ -1,36 +1,103 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+#  CryptoWatch. — Live Cryptocurrency Terminal
 
-## Getting Started
+CryptoWatch is a cryptocurrency monitoring terminal built with Next.js, TypeScript, and CoinGecko APIs, providing real-time market insights, trending assets, and detailed coin analytics through a fast, responsive dashboard interface.
 
-First, run the development server:
+The application delivers a terminal-style crypto tracking experience focused on performance, scalability, and clean data visualization.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Features
+- Live cryptocurrency market data
+- Trending coins dashboard
+- Detailed coin overview pages
+- Market price & 24h performance tracking
+- Server-side API fetching & caching
+- Pagination for large market datasets
+- Responsive UI with modern design system
+- Optimized image loading via Next.js
+- Type-safe API integration using TypeScript
+
+## Preview
+### Home Dashboard
+
+Trending cryptocurrencies
+
+Market overview
+
+Price movement indicators
+
+### All Coins
+
+Paginated market listings
+
+Rank, price, market cap, and 24h change
+
+### Coin Details
+
+Individual asset analytics
+
+OHLC price data visualization
+
+## Tech Stack
+### Frontend
+
+Next.js (App Router)
+
+React
+
+TypeScript
+
+Tailwind CSS
+
+shadcn/ui
+
+Lucide Icons
+
+### Data & APIs
+
+CoinGecko Pro API
+
+Fetch caching & ISR revalidation
+
+## Environment Setup
+
+Create a .env.local file:
+
+```
+COIN_GECKO_BASE_URL=https://pro-api.coingecko.com/api/v3
+COIN_GECKO_API_KEY=YOUR_API_KEY
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Getting Started
+1. Clone Repository
+```
+git clone https://github.com/yourusername/cryptowatch.git
+cd cryptowatch
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Install Dependencies
+```
+npm install
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+4. Run Development Server
+```
+npm run dev
+```
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+Open:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+http://localhost:3000
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+## Engineering Highlights
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Built reusable generic DataTable component
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Implemented scalable server-side pagination
+
+Designed modular API handling layer
+
+Strong TypeScript typing across UI + API
+
+Clean separation of client/server logic
+
