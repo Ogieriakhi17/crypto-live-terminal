@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "CoinPulse",
+  title: "Cryptowatch",
   description: "Real-time crypto terminal",
 };
 
