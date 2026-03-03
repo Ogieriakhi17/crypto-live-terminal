@@ -17,15 +17,16 @@ The application delivers a terminal-style crypto tracking experience focused on 
 
 ## Preview
 ### Home Dashboard
-
+![Dashboard](./public/cryptowatch_dash_1.png)
 Trending cryptocurrencies
 
 Market overview
+![Market](./public/cryptowatch_dash_2.png)
 
 Price movement indicators
 
 ### All Coins
-
+![AllCoins](./public/cryptowatch_all_coins_page.png)
 Paginated market listings
 
 Rank, price, market cap, and 24h change
